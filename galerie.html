@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotogalerie prací | Hrabemi Suchomel – Výkopové práce</title>
+    <meta name="description" content="Prohlédněte si fotogalerii dokončených projektů – výkopy, základy, bazény, terénní úpravy a demolice v okolí Čáslavi a Středních Čech.">
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+    <div class="container topbar__inner">
+        <span><i class="fas fa-map-marker-alt"></i> Krchleby 204, Čáslav &nbsp;|&nbsp; IČO: 748 050 02</span>
+        <div class="topbar__contacts">
+            <a href="tel:+420777961876"><i class="fas fa-phone"></i> +420 777 961 876</a>
+            <a href="mailto:suchomel@hrabemi.cz"><i class="fas fa-envelope"></i> suchomel@hrabemi.cz</a>
+            <a href="https://www.facebook.com/people/Zemn%C3%AD-a-v%C3%BDkopov%C3%A9-pr%C3%A1ce-Jakub-Suchomel/61553498416971/" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
+        </div>
+    </div>
+</div>
+
+<header class="header" id="header">
+    <div class="container header__inner">
+        <a href="index.html" class="header__logo"><img src="img/hrabemi_logo.png" alt="Hrabemi Suchomel logo"></a>
+        <nav class="nav" id="nav">
+            <a href="index.html" class="nav__link">O mně</a>
+            <a href="galerie.html" class="nav__link nav__link--active">Fotogalerie</a>
+            <a href="recenze.html" class="nav__link">Reference</a>
+            <a href="poptavka.html" class="nav__link nav__link--cta">Nezávazná poptávka</a>
+        </nav>
+        <button class="nav__burger" id="burger" aria-label="Otevřít menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero__label">Fotogalerie</div>
+        <h1>Naše dokončené <span class="text-accent">projekty</span></h1>
+        <p>Prohlédněte si ukázky naší práce – výkopy, bazény, demolice a terénní úpravy.</p>
+        <div class="page-hero__stats">
+            <div class="stat"><span class="stat__num">1000+</span><span class="stat__label">projektů</span></div>
+            <div class="stat"><span class="stat__num">10+</span><span class="stat__label">let praxe</span></div>
+            <div class="stat"><span class="stat__num">500+</span><span class="stat__label">zákazníků</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--light">
+    <div class="container">
+
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all"><i class="fas fa-th"></i> Vše</button>
+            <button class="filter-btn" data-filter="technika"><i class="fas fa-tractor"></i> Technika</button>
+            <button class="filter-btn" data-filter="vykopy"><i class="fas fa-digging"></i> Výkopy</button>
+            <button class="filter-btn" data-filter="bazeny"><i class="fas fa-water"></i> Bazény</button>
+            <button class="filter-btn" data-filter="demolice"><i class="fas fa-hammer"></i> Demolice</button>
+            <button class="filter-btn" data-filter="tereni"><i class="fas fa-mountain"></i> Terén</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+
+            <!-- Existující fotky z projektu -->
+            <div class="gallery-item gi--wide" data-category="technika" data-title="VOLVO BL71 – hlavní stroj">
+                <img src="img/traktorbagr.jpeg" alt="Traktorbagr VOLVO BL71" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">VOLVO BL71</span>
+                    <span class="go-cat"><i class="fas fa-tractor"></i> Technika</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            </div>
+
+            <div class="gallery-item" data-category="technika" data-title="Podkopová lžíce">
+                <img src="img/tb_bs.jpg" alt="Podkopová lžíce bagru" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">Podkopová lžíce</span>
+                    <span class="go-cat"><i class="fas fa-tractor"></i> Technika</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            </div>
+
+            <div class="gallery-item" data-category="technika" data-title="Svahová lžíce FS">
+                <img src="img/tb_FS.jpg" alt="Svahová lžíce FS" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">Svahová lžíce FS</span>
+                    <span class="go-cat"><i class="fas fa-tractor"></i> Technika</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            </div>
+
+            <div class="gallery-item" data-category="technika" data-title="Svahová lžíce FS2">
+                <img src="img/tb_FS2.jpg" alt="Svahová lžíce FS2" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">Svahová lžíce FS2</span>
+                    <span class="go-cat"><i class="fas fa-tractor"></i> Technika</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            </div>
+
+            <!-- PLACEHOLDERY – nahraď skutečnými fotkami -->
+            <!-- Jak přidat fotku:
+                 1. Nahraj obrázek do složky img/
+                 2. Zkopíruj blok níže, odstraň třídu "gallery-placeholder"
+                 3. Přidej <img src="img/NAZEV_SOUBORU.jpg" alt="Popis" loading="lazy">
+                 4. Nastav správnou data-category: vykopy | bazeny | demolice | tereni | technika
+            -->
+            <div class="gallery-item gallery-placeholder" data-category="vykopy" data-title="Základový výkop">
+                <div class="ph-inner"><i class="fas fa-image"></i><span>Přidat fotku výkopu</span></div>
+            </div>
+
+            <div class="gallery-item gi--wide gallery-placeholder" data-category="bazeny" data-title="Výkop bazénu">
+                <div class="ph-inner"><i class="fas fa-image"></i><span>Přidat fotku bazénu</span></div>
+            </div>
+
+            <div class="gallery-item gallery-placeholder" data-category="demolice" data-title="Demolice objektu">
+                <div class="ph-inner"><i class="fas fa-image"></i><span>Přidat fotku demolice</span></div>
+            </div>
+
+            <div class="gallery-item gallery-placeholder" data-category="tereni" data-title="Terénní úpravy">
+                <div class="ph-inner"><i class="fas fa-image"></i><span>Přidat fotku terénu</span></div>
+            </div>
+
+        </div>
+
+        <p class="gallery-empty" id="galleryEmpty">
+            <i class="fas fa-images"></i> V této kategorii zatím nejsou fotografie.
+        </p>
+
+        <div class="form-tip" style="margin-top:2rem;">
+            <strong><i class="fas fa-info-circle" style="color:var(--red);margin-right:.4rem;"></i> Jak přidat fotky</strong>
+            <p style="margin-top:.4rem;font-size:.9rem;">
+                Nahraj fotky do složky <code>img/</code> a v souboru <code>galerie.html</code> nahraď placeholder bloky skutečnými
+                obrázky. Instrukce jsou přímo v kódu jako komentáře.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container cta-section__inner">
+        <div>
+            <h2>Líbí se vám naše práce?</h2>
+            <p>Nezávazně se poptejte – kalkulace zdarma do 24 hodin!</p>
+        </div>
+        <div class="cta-section__actions">
+            <a href="tel:+420777961876" class="btn btn--white"><i class="fas fa-phone"></i> +420 777 961 876</a>
+            <a href="poptavka.html" class="btn btn--dark"><i class="fas fa-calculator"></i> Nezávazná poptávka</a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container footer__inner">
+        <div class="footer__col">
+            <img src="img/hrabemi_logo.png" alt="Hrabemi logo" class="footer__logo">
+            <p>Profesionální výkopové práce traktorbagrem v okolí Čáslavi a Středních Čech.</p>
+        </div>
+        <div class="footer__col">
+            <h4>Kontakt</h4>
+            <ul>
+                <li><i class="fas fa-phone"></i><a href="tel:+420777961876">+420 777 961 876</a></li>
+                <li><i class="fas fa-envelope"></i><a href="mailto:suchomel@hrabemi.cz">suchomel@hrabemi.cz</a></li>
+                <li><i class="fas fa-map-marker-alt"></i> Krchleby 204, Čáslav 286 01</li>
+            </ul>
+        </div>
+        <div class="footer__col">
+            <h4>Rychlé odkazy</h4>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> O mně</a></li>
+                <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie</a></li>
+                <li><a href="recenze.html"><i class="fas fa-star"></i> Reference</a></li>
+                <li><a href="poptavka.html"><i class="fas fa-calculator"></i> Poptávka</a></li>
+            </ul>
+        </div>
+        <div class="footer__col">
+            <h4>Oblast působnosti</h4>
+            <ul>
+                <li>Čáslav a okolí</li><li>Kutná Hora</li>
+                <li>Kolín</li><li>Střední Čechy (dle dohody)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="container">
+            <span>© 2025 Hrabemi Suchomel · IČO: 748 050 02</span>
+            <span>Web vytvořil Jan Drda</span>
+        </div>
+    </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Prohlížeč fotografií">
+    <button class="lb-close" id="lbClose" aria-label="Zavřít"><i class="fas fa-times"></i></button>
+    <button class="lb-nav lb-nav--prev" id="lbPrev" aria-label="Předchozí"><i class="fas fa-chevron-left"></i></button>
+    <div class="lb-inner">
+        <img class="lb-img" id="lbImg" src="" alt="">
+        <p class="lb-caption" id="lbCaption"></p>
+        <p class="lb-counter" id="lbCounter"></p>
+    </div>
+    <button class="lb-nav lb-nav--next" id="lbNext" aria-label="Další"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Zpět nahoru"><i class="fas fa-chevron-up"></i></button>
+<script src="script.js"></script>
+</body>
+</html>
