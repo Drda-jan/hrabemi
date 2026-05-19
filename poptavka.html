@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nezávazná poptávka | Hrabemi Suchomel – Výkopové práce</title>
+    <meta name="description" content="Nezávazná poptávka na výkopové práce traktorbagrem. Rychlá kalkulace, férové ceny. Základy, bazény, demolice v okolí Čáslavi, Kutné Hory a Kolína.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Jakub Suchomel – Hrabemi">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="container topbar__inner">
+        <span><i class="fas fa-map-marker-alt"></i> Krchleby 204, Čáslav &nbsp;|&nbsp; IČO: 748 050 02</span>
+        <div class="topbar__contacts">
+            <a href="tel:+420777961876"><i class="fas fa-phone"></i> +420 777 961 876</a>
+            <a href="mailto:suchomel@hrabemi.cz"><i class="fas fa-envelope"></i> suchomel@hrabemi.cz</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+    <div class="container header__inner">
+        <a href="index.html" class="header__logo">
+            <img src="IMG/hrabemi_logo.png" alt="Hrabemi Suchomel logo">
+        </a>
+        <nav class="nav" id="nav">
+            <a href="index.html" class="nav__link">O mně</a>
+            <a href="recenze.html" class="nav__link">Reference</a>
+            <a href="poptavka.html" class="nav__link nav__link--active nav__link--cta">Nezávazná poptávka</a>
+        </nav>
+        <button class="nav__burger" id="burger" aria-label="Otevřít menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero__label">Nezávazná poptávka</div>
+        <h1>Popište mi váš projekt</h1>
+        <p>Vyplňte formulář a obratem se vám ozvu s kalkulací. Odpovím do 24 hodin!</p>
+        <div class="page-hero__stats">
+            <div class="stat"><span class="stat__num">ZDARMA</span><span class="stat__label">kalkulace</span></div>
+            <div class="stat"><span class="stat__num">24h</span><span class="stat__label">odpověď</span></div>
+            <div class="stat"><span class="stat__num">0</span><span class="stat__label">závazků</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- FORMULÁŘ -->
+<section class="form-section">
+    <div class="container">
+        <div class="form-wrap">
+
+            <!-- ÚSPĚCH (zobrazí se po odeslání) -->
+            <div class="form-success" id="formSuccess">
+                <div class="form-success__icon"><i class="fas fa-check"></i></div>
+                <h3>Poptávka odeslána!</h3>
+                <p>Děkuji za vaši zprávu. Ozvu se vám do 24 hodin s kalkulací nebo dotazy.</p>
+                <a href="index.html" class="btn btn--primary" style="margin-top:1.5rem;">
+                    <i class="fas fa-home"></i> Zpět na hlavní stránku
+                </a>
+            </div>
+
+            <!-- FORMULÁŘ -->
+            <!-- 
+                ====================================================
+                FORMSPREE INSTRUKCE:
+                1. Zaregistruj se zdarma na https://formspree.io
+                2. Vytvoř nový formulář (New Form)
+                3. Zkopíruj svůj endpoint (např. https://formspree.io/f/xyzabcde)
+                4. Nahraď "TVUJ_FORMSPREE_ID" níže tímto endpointem
+                ====================================================
+            -->
+            <form id="poptavkaForm" action="https://formspree.io/f/TVUJ_FORMSPREE_ID" method="POST">
+                
+                <!-- Skrytá pole pro Formspree -->
+                <input type="hidden" name="_subject" value="Nová poptávka z hrabemi.cz">
+                <input type="hidden" name="_language" value="cs">
+                <!-- Anti-spam honeypot (neviditelné, boti to vyplní, lidé ne) -->
+                <input type="text" name="_gotcha" style="display:none">
+
+                <div style="margin-bottom:2rem;">
+                    <h2 style="font-family:var(--font-head);font-size:1.4rem;text-transform:uppercase;margin-bottom:.3rem;">Kontaktní údaje</h2>
+                    <p style="color:var(--gray-600);font-size:.9rem;">Jak vás mohu kontaktovat?</p>
+                </div>
+
+                <div class="form-grid-2" style="margin-bottom:1.2rem;">
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> Vaše jméno *</label>
+                        <input type="text" id="name" name="jméno" required placeholder="Jak vám mám říkat?" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Váš email *</label>
+                        <input type="email" id="email" name="email" required placeholder="vas@email.cz" autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="form-grid-2" style="margin-bottom:1.2rem;">
+                    <div class="form-group">
+                        <label for="phone"><i class="fas fa-phone"></i> Telefon</label>
+                        <input type="tel" id="phone" name="telefon" placeholder="+420 777 123 456" autocomplete="tel">
+                        <span class="hint">Pro rychlejší komunikaci</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="location"><i class="fas fa-map-marker-alt"></i> Lokalita *</label>
+                        <input type="text" id="location" name="lokalita" required placeholder="Město nebo adresa stavby">
+                    </div>
+                </div>
+
+                <hr style="border:none;border-top:1px solid #e5e7eb;margin:1.8rem 0;">
+                <div style="margin-bottom:1.5rem;">
+                    <h2 style="font-family:var(--font-head);font-size:1.4rem;text-transform:uppercase;margin-bottom:.3rem;">O projektu</h2>
+                    <p style="color:var(--gray-600);font-size:.9rem;">Čím více informací, tím přesnější kalkulace</p>
+                </div>
+
+                <div class="form-group" style="margin-bottom:1.2rem;">
+                    <label for="project-type"><i class="fas fa-tasks"></i> Typ práce *</label>
+                    <select id="project-type" name="typ_práce" required>
+                        <option value="">Vyberte typ práce</option>
+                        <option value="Základové práce">Základové práce (desky, pasy, drenáže)</option>
+                        <option value="Bazény a jezírka">Bazény a jezírka</option>
+                        <option value="Inženýrské sítě">Inženýrské sítě (přípojky)</option>
+                        <option value="Demolice">Demolice</option>
+                        <option value="Terénní úpravy">Terénní úpravy</option>
+                        <option value="Odvoz materiálu">Odvoz materiálu</option>
+                        <option value="Kombinace více prací">Kombinace více prací</option>
+                        <option value="Jiné">Jiné (popište níže)</option>
+                    </select>
+                </div>
+
+                <div class="form-grid-2" style="margin-bottom:1.2rem;">
+                    <div class="form-group">
+                        <label for="timeline"><i class="fas fa-calendar"></i> Preferovaný termín</label>
+                        <input type="text" id="timeline" name="termín" placeholder="Např. do konce měsíce...">
+                    </div>
+                    <div class="form-group">
+                        <label for="budget"><i class="fas fa-coins"></i> Předpokládaný rozpočet</label>
+                        <select id="budget" name="rozpočet">
+                            <option value="">Vyberte (nepovinné)</option>
+                            <option value="Do 10 000 Kč">Do 10 000 Kč</option>
+                            <option value="10 000 – 25 000 Kč">10 000 – 25 000 Kč</option>
+                            <option value="25 000 – 50 000 Kč">25 000 – 50 000 Kč</option>
+                            <option value="50 000 – 100 000 Kč">50 000 – 100 000 Kč</option>
+                            <option value="Nad 100 000 Kč">Nad 100 000 Kč</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom:1.5rem;">
+                    <label for="message"><i class="fas fa-comment-alt"></i> Podrobný popis projektu *</label>
+                    <textarea id="message" name="popis_projektu" rows="7" required
+                        placeholder="Popište co nejpodrobněji:
+• Co potřebujete vykopat / vybourat?
+• Jaké jsou přibližné rozměry?
+• Jaká je přístupnost pro bagr?
+• Potřebujete odvoz materiálu?
+• Další požadavky..."></textarea>
+                </div>
+
+                <div class="form-tip" style="margin-bottom:1.5rem;">
+                    <strong><i class="fas fa-lightbulb" style="color:var(--red);margin-right:.4rem;"></i> Tip pro lepší kalkulaci</strong>
+                    Pro nejpřesnější kalkulaci přiložte k emailu <strong>fotografie místa</strong> nebo jednoduchý náčrtek. Pošlete je na <a href="mailto:suchomel@hrabemi.cz" style="color:var(--red);">suchomel@hrabemi.cz</a> spolu s vaším jménem.
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="btn btn--primary btn--lg" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i> Odeslat poptávku
+                    </button>
+                    <p>Po odeslání formuláře se vám ozvu do 24 hodin</p>
+                </div>
+            </form>
+        </div>
+
+        <!-- JAK TO PROBÍHÁ -->
+        <div style="max-width:860px;margin:3rem auto 0;">
+            <h2 style="font-family:var(--font-head);font-size:1.5rem;text-transform:uppercase;text-align:center;margin-bottom:2rem;">Jak probíhá spolupráce</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;">
+                <div style="text-align:center;">
+                    <div style="background:var(--red);color:#fff;width:56px;height:56px;border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--font-head);font-size:1.5rem;font-weight:700;">1</div>
+                    <h3 style="font-family:var(--font-head);font-size:1rem;text-transform:uppercase;margin-bottom:.3rem;">Poptávka</h3>
+                    <p style="font-size:.9rem;color:var(--gray-600);">Vyplníte formulář nebo zavoláte</p>
+                </div>
+                <div style="text-align:center;">
+                    <div style="background:var(--red);color:#fff;width:56px;height:56px;border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--font-head);font-size:1.5rem;font-weight:700;">2</div>
+                    <h3 style="font-family:var(--font-head);font-size:1rem;text-transform:uppercase;margin-bottom:.3rem;">Kalkulace</h3>
+                    <p style="font-size:.9rem;color:var(--gray-600);">Do 24h vám pošlu nabídku</p>
+                </div>
+                <div style="text-align:center;">
+                    <div style="background:var(--red);color:#fff;width:56px;height:56px;border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--font-head);font-size:1.5rem;font-weight:700;">3</div>
+                    <h3 style="font-family:var(--font-head);font-size:1rem;text-transform:uppercase;margin-bottom:.3rem;">Domluva</h3>
+                    <p style="font-size:.9rem;color:var(--gray-600);">Domluvíme termín a detaily</p>
+                </div>
+                <div style="text-align:center;">
+                    <div style="background:var(--red);color:#fff;width:56px;height:56px;border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--font-head);font-size:1.5rem;font-weight:700;">4</div>
+                    <h3 style="font-family:var(--font-head);font-size:1rem;text-transform:uppercase;margin-bottom:.3rem;">Realizace</h3>
+                    <p style="font-size:.9rem;color:var(--gray-600);">Přijedu a odvedu práci</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container cta-section__inner">
+        <div>
+            <h2>Raději zavoláte?</h2>
+            <p>Jsem dostupný 24/7 na telefonu i e-mailu.</p>
+        </div>
+        <div class="cta-section__actions">
+            <a href="tel:+420777961876" class="btn btn--white">
+                <i class="fas fa-phone"></i> +420 777 961 876
+            </a>
+            <a href="mailto:suchomel@hrabemi.cz" class="btn btn--dark">
+                <i class="fas fa-envelope"></i> suchomel@hrabemi.cz
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container footer__inner">
+        <div class="footer__col">
+            <img src="IMG/hrabemi_logo.png" alt="Hrabemi logo" class="footer__logo">
+            <p>Profesionální výkopové práce traktorbagrem v okolí Čáslavi a Středních Čech.</p>
+        </div>
+        <div class="footer__col">
+            <h4>Kontakt</h4>
+            <ul>
+                <li><i class="fas fa-phone"></i> <a href="tel:+420777961876">+420 777 961 876</a></li>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:suchomel@hrabemi.cz">suchomel@hrabemi.cz</a></li>
+                <li><i class="fas fa-map-marker-alt"></i> Krchleby 204, Čáslav 286 01</li>
+            </ul>
+        </div>
+        <div class="footer__col">
+            <h4>Rychlé odkazy</h4>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> O mně</a></li>
+                <li><a href="recenze.html"><i class="fas fa-star"></i> Reference zákazníků</a></li>
+                <li><a href="https://www.facebook.com/people/Zemn%C3%AD-a-v%C3%BDkopov%C3%A9-pr%C3%A1ce-Jakub-Suchomel/61553498416971/" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a></li>
+            </ul>
+        </div>
+        <div class="footer__col">
+            <h4>Oblast působnosti</h4>
+            <ul>
+                <li>Čáslav a okolí</li>
+                <li>Kutná Hora</li>
+                <li>Kolín</li>
+                <li>Střední Čechy (dle dohody)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="container">
+            <span>© 2025 Hrabemi Suchomel · IČO: 748 050 02</span>
+            <span>Web vytvořil Jan Drda</span>
+        </div>
+    </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Zpět nahoru"><i class="fas fa-chevron-up"></i></button>
+<script src="script.js"></script>
+</body>
+</html>
