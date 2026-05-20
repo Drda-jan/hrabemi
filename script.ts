@@ -1,5 +1,11 @@
 export {};
+// Typy pro reCAPTCHA
+declare const grecaptcha: {
+    execute(siteKey: string, options: { action: string }): Promise<string>;
+};
 
+// Nastav svůj Site Key z console.cloud.google.com
+const RECAPTCHA_SITE_KEY = 'TVUJ_RECAPTCHA_SITE_KEY';
 document.addEventListener('DOMContentLoaded', (): void => {
 
     /* ---- MOBILE NAV ---- */
@@ -79,6 +85,181 @@ document.addEventListener('DOMContentLoaded', (): void => {
 
     createCookieBanner();
 
+    /* ---- GALLERY FILTER ---- */
+const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+const galleryItems = document.querySelectorAll<HTMLElement>('.gallery-item');
+const galleryEmpty = document.getElementById('galleryEmpty');
+
+if (filterBtns.length && galleryItems.length) {
+    filterBtns.forEach((btn): void => {
+        btn.addEventListener('click', (): void => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.getAttribute('data-filter');
+            let visibleCount = 0;
+
+            galleryItems.forEach((item): void => {
+                const cat = item.getAttribute('data-category');
+                const show = filter === 'all' || cat === filter;
+                item.style.display = show ? '' : 'none';
+                if (show) visibleCount++;
+            });
+
+            if (galleryEmpty) {
+                galleryEmpty.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+        });
+    });
+}
+
+/* ---- LIGHTBOX ---- */
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg') as HTMLImageElement | null;
+const lbCaption = document.getElementById('lbCaption');
+const lbCounter = document.getElementById('lbCounter');
+const lbClose = document.getElementById('lbClose');
+const lbPrev = document.getElementById('lbPrev');
+const lbNext = document.getElementById('lbNext');
+let lbItems: HTMLElement[] = [];
+let lbIndex = 0;
+
+function openLightbox(items: HTMLElement[], index: number): void {
+    lbItems = items;
+    lbIndex = index;
+    showLbSlide();
+    lightbox?.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+}
+function closeLightbox(): void {
+    lightbox?.classList.remove('is-open');
+    document.body.style.overflow = '';
+}
+function showLbSlide(): void {
+    const item = lbItems[lbIndex];
+    const img = item.querySelector('img') as HTMLImageElement | null;
+    if (!img || !lbImg) return;
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    if (lbCaption) lbCaption.textContent = item.getAttribute('data-title') || '';
+    if (lbCounter) lbCounter.textContent = `${lbIndex + 1} / ${lbItems.length}`;
+}
+
+if (lightbox) {
+    document.getElementById('galleryGrid')?.addEventListener('click', (e: MouseEvent): void => {
+        const item = (e.target as HTMLElement).closest<HTMLElement>('.gallery-item:not(.gallery-placeholder)');
+        if (!item) return;
+        const visibleItems = [...document.querySelectorAll<HTMLElement>('.gallery-item:not(.gallery-placeholder)')].filter(i => i.style.display !== 'none');
+        const index = visibleItems.indexOf(item);
+        if (index >= 0) openLightbox(visibleItems, index);
+    });
+    lbClose?.addEventListener('click', closeLightbox);
+    lbPrev?.addEventListener('click', (): void => { lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length; showLbSlide(); });
+    lbNext?.addEventListener('click', (): void => { lbIndex = (lbIndex + 1) % lbItems.length; showLbSlide(); });
+    lightbox.addEventListener('click', (e: MouseEvent): void => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e: KeyboardEvent): void => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') { lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length; showLbSlide(); }
+        if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbItems.length; showLbSlide(); }
+    });
+}
+
+/* ---- HVĚZDIČKOVÉ HODNOCENÍ ---- */
+const starRating = document.getElementById('starRating');
+const ratingInput = document.getElementById('r-rating') as HTMLInputElement | null;
+
+if (starRating && ratingInput) {
+    const stars = starRating.querySelectorAll<HTMLButtonElement>('.star-btn');
+    let selectedRating = 0;
+
+    function updateStars(hoverVal: number): void {
+        stars.forEach((s, i): void => { s.classList.toggle('active', i < hoverVal); });
+    }
+
+    stars.forEach((s): void => {
+        s.addEventListener('mouseenter', (): void => updateStars(Number(s.dataset.value)));
+        s.addEventListener('mouseleave', (): void => updateStars(selectedRating));
+        s.addEventListener('click', (): void => {
+            selectedRating = Number(s.dataset.value);
+            ratingInput.value = String(selectedRating);
+            updateStars(selectedRating);
+        });
+    });
+}
+
+/* ---- RECENZE FORMULÁŘ ---- */
+const recenzeForm = document.getElementById('recenzeForm') as HTMLFormElement | null;
+const recenzeSuccess = document.getElementById('recenzeSuccess') as HTMLElement | null;
+const recenzeSubmitBtn = document.getElementById('recenzeSubmitBtn') as HTMLButtonElement | null;
+let lastRecenzeSubmit = 0;
+
+if (recenzeForm && recenzeSuccess && recenzeSubmitBtn) {
+    recenzeForm.addEventListener('submit', async (e: SubmitEvent): Promise<void> => {
+        e.preventDefault();
+
+        const now = Date.now();
+        if (now - lastRecenzeSubmit < 10000) {
+            showRecenzeError('Příliš rychlé odesílání – počkejte chvíli.');
+            return;
+        }
+        lastRecenzeSubmit = now;
+        if (!validateForm(recenzeForm)) return;
+
+        if (typeof grecaptcha !== 'undefined') {
+            recenzeSubmitBtn.disabled = true;
+            recenzeSubmitBtn.innerHTML = 'Ověřuji...';
+            try {
+                const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'recenze' });
+                const tokenInput = document.getElementById('recaptchaTokenRecenze') as HTMLInputElement | null;
+                if (tokenInput) tokenInput.value = token;
+            } catch {
+                showRecenzeError('Nepodařilo se ověřit reCAPTCHA. Zkuste to znovu.');
+                recenzeSubmitBtn.disabled = false;
+                recenzeSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat recenzi';
+                return;
+            }
+        }
+
+        recenzeSubmitBtn.disabled = true;
+        recenzeSubmitBtn.innerHTML = 'Odesílám...';
+
+        try {
+            const data = new FormData(recenzeForm);
+            const response = await fetch(recenzeForm.action, {
+                method: 'POST', body: data,
+                headers: { Accept: 'application/json' },
+            });
+            if (response.ok) {
+                recenzeForm.style.display = 'none';
+                recenzeSuccess.style.display = 'block';
+                recenzeSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                const json = await response.json().catch(() => ({}));
+                const msg = json?.errors?.map((e: { message: string }) => e.message).join(', ') || 'Neznámá chyba';
+                showRecenzeError('Nepodařilo se odeslat: ' + msg);
+                recenzeSubmitBtn.disabled = false;
+                recenzeSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat recenzi';
+            }
+        } catch {
+            showRecenzeError('Chyba připojení k serveru.');
+            recenzeSubmitBtn.disabled = false;
+            recenzeSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat recenzi';
+        }
+    });
+}
+
+function showRecenzeError(msg: string): void {
+    let box = document.getElementById('recenzeGlobalError');
+    if (!box) {
+        box = document.createElement('div');
+        box.id = 'recenzeGlobalError';
+        box.style.cssText = 'background:#fee2e2;border:1px solid #fca5a5;padding:1rem;margin-bottom:1rem;color:#b91c1c;';
+        recenzeForm?.prepend(box);
+    }
+    box.textContent = msg;
+}
+
     /* ---- FORM ---- */
     const form = document.getElementById('poptavkaForm') as HTMLFormElement | null;
     const successBox = document.getElementById('formSuccess') as HTMLElement | null;
@@ -99,9 +280,24 @@ document.addEventListener('DOMContentLoaded', (): void => {
 
             if (!validateForm(form)) return;
 
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Odesílám...';
+            // reCAPTCHA v3
+            if (typeof grecaptcha !== 'undefined') {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Ověřuji...';
+                try {
+                    const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'poptavka' });
+                    const tokenInput = document.getElementById('recaptchaToken') as HTMLInputElement | null;
+                    if (tokenInput) tokenInput.value = token;
+                } catch {
+                    showFormError('Nepodařilo se ověřit reCAPTCHA. Zkuste to znovu.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Odeslat poptávku';
+                    return;
+                }
+            }
 
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Odesílám...';
             try {
                 const data = new FormData(form);
 
