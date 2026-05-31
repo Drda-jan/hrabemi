@@ -66,12 +66,50 @@
 
         <div class="gallery-grid" id="galleryGrid">
 
-            <!-- Existující fotky z projektu -->
-            <div class="gallery-item gi--wide" data-category="technika" data-title="VOLVO BL71 – hlavní stroj">
+            <!-- ŘADA 1: wide + 1 normální -->
+            <div class="gallery-item gi--wide" data-category="technika" data-title="VOLVO BL71 – pohled z výšky">
+                <img src="img/traktorbagr-volvo-bl71-ptaci-pohled.jpeg" alt="Traktorbagr VOLVO BL71 ptačí pohled" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">VOLVO BL71 – pohled z výšky</span>
+                    <span class="go-cat"><i class="fas fa-tractor"></i> Technika</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            </div>
+
+            <div class="gallery-item" data-category="technika" data-title="VOLVO BL71 – pohled z boku">
+                <img src="img/traktorbagr-volvo-bl71-bok.jpeg" alt="Traktorbagr VOLVO BL71 pohled z boku" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">VOLVO BL71 – pohled z boku</span>
+                    <span class="go-cat"><i class="fas fa-tractor"></i> Technika</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            </div>
+
+            <!-- ŘADA 2: 1 normální + wide -->
+            <div class="gallery-item" data-category="technika" data-title="VOLVO BL71 – hlavní stroj">
                 <img src="img/traktorbagr.jpeg" alt="Traktorbagr VOLVO BL71" loading="lazy">
                 <div class="gallery-overlay">
                     <span class="go-title">VOLVO BL71</span>
                     <span class="go-cat"><i class="fas fa-tractor"></i> Technika</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            </div>
+
+            <div class="gallery-item gi--wide" data-category="bazeny" data-title="Výkop bazénu – betonová deska">
+                <img src="img/vykop-bazenu-betonova-deska.jpg" alt="Výkop bazénu s betonovou deskou" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">Výkop bazénu – betonová deska</span>
+                    <span class="go-cat"><i class="fas fa-water"></i> Bazény</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            </div>
+
+            <!-- ŘADA 3: wide + 1 normální -->
+            <div class="gallery-item gi--wide" data-category="bazeny" data-title="Dokončený bazén">
+                <img src="img/bazen-dokonceny.jpg" alt="Dokončený bazén v zahradě" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">Dokončený bazén</span>
+                    <span class="go-cat"><i class="fas fa-water"></i> Bazény</span>
                 </div>
                 <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
             </div>
@@ -85,6 +123,7 @@
                 <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
             </div>
 
+            <!-- ŘADA 4: 2 normální + wide -->
             <div class="gallery-item" data-category="technika" data-title="Svahová lžíce FS">
                 <img src="img/tb_FS.jpg" alt="Svahová lžíce FS" loading="lazy">
                 <div class="gallery-overlay">
@@ -103,27 +142,42 @@
                 <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
             </div>
 
-            <!-- PLACEHOLDERY – nahraď skutečnými fotkami -->
-            <!-- Jak přidat fotku:
-                 1. Nahraj obrázek do složky img/
-                 2. Zkopíruj blok níže, odstraň třídu "gallery-placeholder"
-                 3. Přidej <img src="img/NAZEV_SOUBORU.jpg" alt="Popis" loading="lazy">
-                 4. Nastav správnou data-category: vykopy | bazeny | demolice | tereni | technika
-            -->
-            <div class="gallery-item gallery-placeholder" data-category="vykopy" data-title="Základový výkop">
-                <div class="ph-inner"><i class="fas fa-image"></i><span>Přidat fotku výkopu</span></div>
+            <div class="gallery-item gi--wide" data-category="tereni" data-title="Terénní úpravy – zarovnání pozemku">
+                <img src="img/teranni-upravy-pozemek-leto.jpeg" alt="Zarovnání a úprava pozemku" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">Zarovnání a úprava pozemku</span>
+                    <span class="go-cat"><i class="fas fa-mountain"></i> Terén</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
             </div>
 
-            <div class="gallery-item gi--wide gallery-placeholder" data-category="bazeny" data-title="Výkop bazénu">
-                <div class="ph-inner"><i class="fas fa-image"></i><span>Přidat fotku bazénu</span></div>
+            <!-- ŘADA 5: 1 normální + wide -->
+            <div class="gallery-item" data-category="tereni" data-title="Terénní úpravy – štěrkový povrch">
+                <img src="img/teranni-upravy-sterkovy-povrch.jpeg" alt="Terénní úpravy štěrkový povrch dvora" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">Štěrkový povrch dvora</span>
+                    <span class="go-cat"><i class="fas fa-mountain"></i> Terén</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
             </div>
 
-            <div class="gallery-item gallery-placeholder" data-category="demolice" data-title="Demolice objektu">
-                <div class="ph-inner"><i class="fas fa-image"></i><span>Přidat fotku demolice</span></div>
+            <div class="gallery-item gi--wide" data-category="tereni" data-title="Terénní úpravy – pozemek po demolici">
+                <img src="img/teranni-upravy-pozemek-po-demolici.jpeg" alt="Terénní úpravy pozemku po demolici" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">Pozemek po demolici</span>
+                    <span class="go-cat"><i class="fas fa-mountain"></i> Terén</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
             </div>
 
-            <div class="gallery-item gallery-placeholder" data-category="tereni" data-title="Terénní úpravy">
-                <div class="ph-inner"><i class="fas fa-image"></i><span>Přidat fotku terénu</span></div>
+            <!-- ŘADA 6: wide + 1 normální -->
+            <div class="gallery-item gi--wide" data-category="tereni" data-title="Terénní úpravy – celkový pohled">
+                <img src="img/teranni-upravy-pozemek-pohled.jpeg" alt="Terénní úpravy celkový pohled na pozemek" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="go-title">Celkový pohled na pozemek</span>
+                    <span class="go-cat"><i class="fas fa-mountain"></i> Terén</span>
+                </div>
+                <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
             </div>
 
         </div>
@@ -131,6 +185,7 @@
         <p class="gallery-empty" id="galleryEmpty">
             <i class="fas fa-images"></i> V této kategorii zatím nejsou fotografie.
         </p>
+
 
     </div>
 </section>
