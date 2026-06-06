@@ -110,7 +110,7 @@ ul { list-style: none; }
     justify-content: space-between;
     height: 72px;
 }
-.header__logo img { height: 52px; width: auto; }
+.header__logo img { height: 70px; width: auto; }
 
 .nav { display: flex; align-items: center; gap: .25rem; }
 .nav__link {
