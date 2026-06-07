@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
 <body>
 
@@ -62,7 +65,6 @@
     <div class="container">
         <div class="form-wrap">
 
-            <!-- ÚSPĚCH (zobrazí se po odeslání) -->
             <div class="form-success" id="formSuccess">
                 <div class="form-success__icon"><i class="fas fa-check"></i></div>
                 <h3>Poptávka odeslána!</h3>
@@ -72,8 +74,7 @@
                 </a>
             </div>
 
-            <!-- FORMULÁŘ -->
-            <!-- 
+            <!--
                 ====================================================
                 FORMSPREE INSTRUKCE:
                 1. Zaregistruj se zdarma na https://formspree.io
@@ -83,11 +84,9 @@
                 ====================================================
             -->
             <form id="poptavkaForm" action="https://formspree.io/f/TVUJ_FORMSPREE_ID" method="POST">
-                
-                <!-- Skrytá pole pro Formspree -->
+
                 <input type="hidden" name="_subject" value="Nová poptávka z hrabemi.cz">
                 <input type="hidden" name="_language" value="cs">
-                <!-- Anti-spam honeypot (neviditelné, boti to vyplní, lidé ne) -->
                 <input type="text" name="_gotcha" style="display:none">
 
                 <div style="margin-bottom:2rem;">
@@ -182,7 +181,6 @@
             </form>
         </div>
 
-        <!-- JAK TO PROBÍHÁ -->
         <div style="max-width:860px;margin:3rem auto 0;">
             <h2 style="font-family:var(--font-head);font-size:1.5rem;text-transform:uppercase;text-align:center;margin-bottom:2rem;">Jak probíhá spolupráce</h2>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;">
@@ -211,7 +209,6 @@
     </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section">
     <div class="container cta-section__inner">
         <div>
@@ -229,7 +226,6 @@
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
     <div class="container footer__inner">
         <div class="footer__col">
