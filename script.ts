@@ -5,7 +5,7 @@ declare const grecaptcha: {
 };
 
 // Nastav svůj Site Key z console.cloud.google.com
-const RECAPTCHA_SITE_KEY = 'TVUJ_RECAPTCHA_SITE_KEY';
+const RECAPTCHA_SITE_KEY = '6Lfv1CQtAAAAAJyoBDH1yWq9sMden2ahwGDPCYhu';
 document.addEventListener('DOMContentLoaded', (): void => {
 
     /* ---- MOBILE NAV ---- */
@@ -288,13 +288,15 @@ function showRecenzeError(msg: string): void {
                     const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'poptavka' });
                     const tokenInput = document.getElementById('recaptchaToken') as HTMLInputElement | null;
                     if (tokenInput) tokenInput.value = token;
-                } catch {
-                    showFormError('Nepodařilo se ověřit reCAPTCHA. Zkuste to znovu.');
+                }
+               catch (err) {
+                    console.error('reCAPTCHA error (poptavka):', err);
+                     showFormError('Nepodařilo se ověřit reCAPTCHA. Zkuste to znovu.');
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = 'Odeslat poptávku';
                     return;
+                    }
                 }
-            }
 
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = 'Odesílám...';

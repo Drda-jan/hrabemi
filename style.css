@@ -1082,3 +1082,8 @@ ul { list-style: none; }
         right: .4rem;
     }
 }
+
+/* reCAPTCHA badge — posunutí výš, ať nepřekrývá tlačítko "Zpět nahoru" */
+.grecaptcha-badge {
+    bottom: 80px !important;
+}

@@ -1,5 +1,5 @@
 // Nastav svůj Site Key z console.cloud.google.com
-const RECAPTCHA_SITE_KEY = 'TVUJ_RECAPTCHA_SITE_KEY';
+const RECAPTCHA_SITE_KEY = '6Lfv1CQtAAAAAJyoBDH1yWq9sMden2ahwGDPCYhu';
 document.addEventListener('DOMContentLoaded', () => {
     /* ---- MOBILE NAV ---- */
     const burger = document.getElementById('burger');
@@ -267,7 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (tokenInput)
                         tokenInput.value = token;
                 }
-                catch {
+                catch (err) {
+                    console.error('reCAPTCHA error (poptavka):', err);
                     showFormError('Nepodařilo se ověřit reCAPTCHA. Zkuste to znovu.');
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = 'Odeslat poptávku';
@@ -395,5 +396,4 @@ function showFormError(msg) {
     }
     box.textContent = msg;
 }
-
 
