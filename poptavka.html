@@ -7,15 +7,26 @@
     <meta name="description" content="Nezávazná poptávka na výkopové práce traktorbagrem. Rychlá kalkulace, férové ceny. Základy, bazény, demolice v okolí Čáslavi, Kutné Hory a Kolína.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Jakub Suchomel – Hrabemi">
+
+    <!-- Open Graph - zobrazí se jako náhled při sdílení na Facebooku/WhatsAppu apod. -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hrabemi.cz/poptavka.html">
+    <meta property="og:title" content="Nezávazná poptávka | Hrabemi Suchomel">
+    <meta property="og:description" content="Nezávazná poptávka na výkopové práce traktorbagrem. Rychlá kalkulace, férové ceny v okolí Čáslavi, Kutné Hory a Kolína.">
+    <meta property="og:image" content="https://hrabemi.cz/IMG/traktorbagr.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&amp;family=Source+Sans+3:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- reCAPTCHA v3 - generuje token při odeslání formuláře níže na stránce.
+         Site Key je veřejný údaj (je v pořádku, že je vidět v HTML/JS) -
+         skutečné ověření probíhá na straně Formspree/Google, ne tady. -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lfv1CQtAAAAAJyoBDH1yWq9sMden2ahwGDPCYhu"></script>
 </head>
-<script src="https://www.google.com/recaptcha/api.js?render=6Lfv1CQtAAAAAJyoBDH1yWq9sMden2ahwGDPCYhu"></script>
 <body>
 
 <!-- TOP BAR -->
@@ -37,7 +48,7 @@
         </a>
         <nav class="nav" id="nav">
             <a href="index.html" class="nav__link">O mně</a>
-            <a href="galerie.html" class="nav__link nav__link">Fotogalerie</a>
+            <a href="galerie.html" class="nav__link">Fotogalerie</a>
             <a href="recenze.html" class="nav__link">Reference</a>
             <a href="poptavka.html" class="nav__link nav__link--active nav__link--cta">Nezávazná poptávka</a>
         </nav>
@@ -80,6 +91,10 @@
                 <input type="hidden" name="_subject" value="Nová poptávka z hrabemi.cz">
                 <input type="hidden" name="_language" value="cs">
                 <input type="text" name="_gotcha" style="display:none">
+                <!-- Sem script.js vloží reCAPTCHA v3 token těsně před odeslením
+                     (document.getElementById('recaptchaToken').value = token).
+                     Bez tohoto pole se token spočítal, ale nikam se neodeslal. -->
+                <input type="hidden" id="recaptchaToken" name="recaptcha_token" value="">
 
                 <div style="margin-bottom:2rem;">
                     <h2 style="font-family:var(--font-head);font-size:1.4rem;text-transform:uppercase;margin-bottom:.3rem;">Kontaktní údaje</h2>
@@ -152,11 +167,11 @@
                     <label for="message"><i class="fas fa-comment-alt"></i> Podrobný popis projektu *</label>
                     <textarea id="message" name="popis_projektu" rows="7" required
                         placeholder="Popište co nejpodrobněji:
-• Co potřebujete vykopat / vybourat?
-• Jaké jsou přibližné rozměry?
-• Jaká je přístupnost pro bagr?
-• Potřebujete odvoz materiálu?
-• Další požadavky..."></textarea>
+- Co potřebujete vykopat / vybourat?
+- Jaké jsou přibližné rozměry?
+- Jaká je přístupnost pro bagr?
+- Potřebujete odvoz materiálu?
+- Další požadavky..."></textarea>
                 </div>
 
                 <div class="form-tip" style="margin-bottom:1.5rem;">

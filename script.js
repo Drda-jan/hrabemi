@@ -1,15 +1,56 @@
-// Nastav svůj Site Key z console.cloud.google.com
+"use strict";
+/**
+ * HRABEMI SUCHOMEL — frontend JavaScript (TypeScript zdroj)
+ * =========================================================
+ * Tento soubor se NEPOUZIVA primo v prohlizeci. Slouzi jen jako typovany
+ * zdroj, ze ktereho se generuje `script.js` (ten je nahrany v <script> tagu
+ * na vsech 4 strankach).
+ *
+ * BUILD: po jakekoliv uprave tohoto souboru spust v rootu projektu
+ *
+ *      npx tsc
+ *
+ * a zkontroluj, ze se prepsal `script.js`.
+ *
+ * DULEZITE: tento soubor NESMI obsahovat `import`/`export` na nejvyssi
+ * urovni. Puvodne tu na radku 1 byvalo `export {};` — to TypeScript
+ * prinutilo zpracovat soubor jako ES modul, a protoze cilovy "target"
+ * v tsconfig.json je ES2020 (kde se modulovy zapis zachovava 1:1),
+ * `tsc` to same `export {};` propsal i do vystupniho `script.js`.
+ * Jenze `script.js` se v HTML nahrava jako klasicky <script src="...">,
+ * NE jako <script type="module">, a `export` mimo modul je v prohlizeci
+ * Uncaught SyntaxError, ktery vypne UPLNE VSECHEN JS na webu (menu,
+ * formular, validaci, lightbox, cookie listu...). Pokud bys nekdy
+ * potreboval/a kod rozdelit do vice .ts souboru, je potreba zaroven
+ * zmenit i zpusob, jakym se vysledny JS vklada do HTML (na type="module"
+ * a relativni importy), jinak hrozi presne tato chyba.
+ *
+ * Soubor je rozdeleny na nezavisle bloky. Kazdy blok si nejdriv najde
+ * sve HTML elementy pres getElementById/querySelector a vetvi se pres
+ * `if (element) { ... }` — diky tomu je bezpecne mit jeden soubor
+ * script.js sdileny pro vsechny 4 stranky: na strance, kde dany element
+ * neexistuje (napr. formular poptavky na galerie.html), se prislusny
+ * blok jen preskoci a nic nespadne.
+ */
+// Verejny reCAPTCHA v3 Site Key (NENI to tajny klic — Site Key je urceny
+// k tomu, aby byl viditelny v HTML/JS na strane klienta; tajny "Secret Key"
+// se pouziva jen na serveru a v tomto projektu se vubec nepouziva, protoze
+// formular se overuje pres Formspree, ne pres vlastni backend).
 const RECAPTCHA_SITE_KEY = '6Lfv1CQtAAAAAJyoBDH1yWq9sMden2ahwGDPCYhu';
 document.addEventListener('DOMContentLoaded', () => {
-    /* ---- MOBILE NAV ---- */
+    /* ====================================================
+       MOBILNI NAVIGACE (hamburger menu)
+       ==================================================== */
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
     if (burger && nav) {
+        // Klik na hamburger ikonu otevre/zavre menu
         burger.addEventListener('click', () => {
             nav.classList.toggle('is-open');
             burger.classList.toggle('is-open');
             burger.setAttribute('aria-expanded', String(nav.classList.contains('is-open')));
         });
+        // Klik kamkoliv mimo menu ho zavre
         document.addEventListener('click', (e) => {
             const target = e.target;
             if (!burger.contains(target) && !nav.contains(target)) {
@@ -17,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 burger.classList.remove('is-open');
             }
         });
+        // Klik na konkretni odkaz v menu ho po prechodu na stranku zavre
         nav.querySelectorAll('.nav__link').forEach((link) => {
             link.addEventListener('click', () => {
                 nav.classList.remove('is-open');
@@ -24,14 +66,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    /* ---- STICKY HEADER ---- */
+    /* ====================================================
+       PRILEPENA HLAVICKA PRI SCROLLOVANI
+       (po odscrollovani prida .header--scrolled pro stinovani/mensi vysku)
+       ==================================================== */
     const header = document.getElementById('header');
     if (header) {
         window.addEventListener('scroll', () => {
             header.classList.toggle('header--scrolled', window.scrollY > 10);
         });
     }
-    /* ---- BACK TO TOP ---- */
+    /* ====================================================
+       TLACITKO „ZPET NAHORU“
+       ==================================================== */
     const backToTopBtn = document.getElementById('backToTop');
     if (backToTopBtn) {
         window.addEventListener('scroll', () => {
@@ -41,7 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-    /* ---- COOKIE BANNER ---- */
+    /* ====================================================
+       COOKIE LISTA
+       Web nepouziva analyticke ani sledovaci cookies, takze lista jen
+       informuje a po kliknuti si zapamatuje souhlas do localStorage,
+       aby se priste neukazovala znovu.
+       ==================================================== */
     function createCookieBanner() {
         if (localStorage.getItem('cookieConsent'))
             return;
@@ -65,7 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     createCookieBanner();
-    /* ---- GALLERY FILTER ---- */
+    /* ====================================================
+       FILTR FOTOGALERIE (galerie.html)
+       Tlacitka s data-filter prepinaji, ktere .gallery-item se zobrazi
+       podle jejich data-category. Na strankach bez galerie (index,
+       recenze, poptavka) jsou obe NodeListy prazdne, takze se blok
+       jen preskoci.
+       ==================================================== */
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
     const galleryEmpty = document.getElementById('galleryEmpty');
@@ -89,7 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    /* ---- LIGHTBOX ---- */
+    /* ====================================================
+       LIGHTBOX (zvetsene zobrazeni fotky z galerie.html)
+       ==================================================== */
     const lightbox = document.getElementById('lightbox');
     const lbImg = document.getElementById('lbImg');
     const lbCaption = document.getElementById('lbCaption');
@@ -123,20 +183,32 @@ document.addEventListener('DOMContentLoaded', () => {
             lbCounter.textContent = `${lbIndex + 1} / ${lbItems.length}`;
     }
     if (lightbox) {
+        // Klik na dlazdici v galerii otevre lightbox na dane fotce
         document.getElementById('galleryGrid')?.addEventListener('click', (e) => {
             const item = e.target.closest('.gallery-item:not(.gallery-placeholder)');
             if (!item)
                 return;
-            const visibleItems = [...document.querySelectorAll('.gallery-item:not(.gallery-placeholder)')].filter(i => i.style.display !== 'none');
+            const visibleItems = [...document.querySelectorAll('.gallery-item:not(.gallery-placeholder)')]
+                .filter(i => i.style.display !== 'none');
             const index = visibleItems.indexOf(item);
             if (index >= 0)
                 openLightbox(visibleItems, index);
         });
         lbClose?.addEventListener('click', closeLightbox);
-        lbPrev?.addEventListener('click', () => { lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length; showLbSlide(); });
-        lbNext?.addEventListener('click', () => { lbIndex = (lbIndex + 1) % lbItems.length; showLbSlide(); });
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox)
-            closeLightbox(); });
+        lbPrev?.addEventListener('click', () => {
+            lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length;
+            showLbSlide();
+        });
+        lbNext?.addEventListener('click', () => {
+            lbIndex = (lbIndex + 1) % lbItems.length;
+            showLbSlide();
+        });
+        // Klik na temne pozadi (mimo fotku) lightbox zavre
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox)
+                closeLightbox();
+        });
+        // Klavesove ovladani: Esc zavre, sipky prepinaji fotky
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('is-open'))
                 return;
@@ -152,96 +224,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    /* ---- HVĚZDIČKOVÉ HODNOCENÍ ---- */
-    const starRating = document.getElementById('starRating');
-    const ratingInput = document.getElementById('r-rating');
-    if (starRating && ratingInput) {
-        const stars = starRating.querySelectorAll('.star-btn');
-        let selectedRating = 0;
-        function updateStars(hoverVal) {
-            stars.forEach((s, i) => { s.classList.toggle('active', i < hoverVal); });
-        }
-        stars.forEach((s) => {
-            s.addEventListener('mouseenter', () => updateStars(Number(s.dataset.value)));
-            s.addEventListener('mouseleave', () => updateStars(selectedRating));
-            s.addEventListener('click', () => {
-                selectedRating = Number(s.dataset.value);
-                ratingInput.value = String(selectedRating);
-                updateStars(selectedRating);
-            });
-        });
-    }
-    /* ---- RECENZE FORMULÁŘ ---- */
-    const recenzeForm = document.getElementById('recenzeForm');
-    const recenzeSuccess = document.getElementById('recenzeSuccess');
-    const recenzeSubmitBtn = document.getElementById('recenzeSubmitBtn');
-    let lastRecenzeSubmit = 0;
-    if (recenzeForm && recenzeSuccess && recenzeSubmitBtn) {
-        recenzeForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const now = Date.now();
-            if (now - lastRecenzeSubmit < 10000) {
-                showRecenzeError('Příliš rychlé odesílání – počkejte chvíli.');
-                return;
-            }
-            lastRecenzeSubmit = now;
-            if (!validateForm(recenzeForm))
-                return;
-            if (typeof grecaptcha !== 'undefined') {
-                recenzeSubmitBtn.disabled = true;
-                recenzeSubmitBtn.innerHTML = 'Ověřuji...';
-                try {
-                    const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'recenze' });
-                    const tokenInput = document.getElementById('recaptchaTokenRecenze');
-                    if (tokenInput)
-                        tokenInput.value = token;
-                }
-                catch {
-                    showRecenzeError('Nepodařilo se ověřit reCAPTCHA. Zkuste to znovu.');
-                    recenzeSubmitBtn.disabled = false;
-                    recenzeSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat recenzi';
-                    return;
-                }
-            }
-            recenzeSubmitBtn.disabled = true;
-            recenzeSubmitBtn.innerHTML = 'Odesílám...';
-            try {
-                const data = new FormData(recenzeForm);
-                const response = await fetch(recenzeForm.action, {
-                    method: 'POST', body: data,
-                    headers: { Accept: 'application/json' },
-                });
-                if (response.ok) {
-                    recenzeForm.style.display = 'none';
-                    recenzeSuccess.style.display = 'block';
-                    recenzeSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                else {
-                    const json = await response.json().catch(() => ({}));
-                    const msg = json?.errors?.map((e) => e.message).join(', ') || 'Neznámá chyba';
-                    showRecenzeError('Nepodařilo se odeslat: ' + msg);
-                    recenzeSubmitBtn.disabled = false;
-                    recenzeSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat recenzi';
-                }
-            }
-            catch {
-                showRecenzeError('Chyba připojení k serveru.');
-                recenzeSubmitBtn.disabled = false;
-                recenzeSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat recenzi';
-            }
-        });
-    }
-    function showRecenzeError(msg) {
-        let box = document.getElementById('recenzeGlobalError');
-        if (!box) {
-            box = document.createElement('div');
-            box.id = 'recenzeGlobalError';
-            box.style.cssText = 'background:#fee2e2;border:1px solid #fca5a5;padding:1rem;margin-bottom:1rem;color:#b91c1c;';
-            recenzeForm?.prepend(box);
-        }
-        box.textContent = msg;
-    }
-    /* ---- FORM ---- */
+    /* ====================================================
+       POPTAVKOVY FORMULAR (poptavka.html)
+       Odesila se pres fetch() na Formspree (zadny vlastni backend).
+       Pred odeslanim se vygeneruje reCAPTCHA v3 token a vlozi se do
+       skryteho pole #recaptchaToken — token se jen prilozi k datum,
+       server na to nema vlastni overeni (na statickem hostingu to
+       overuje az Formspree na sve strane).
+       ==================================================== */
     const form = document.getElementById('poptavkaForm');
     const successBox = document.getElementById('formSuccess');
     const submitBtn = document.getElementById('submitBtn');
@@ -249,6 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form && successBox && submitBtn) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            // Jednoducha ochrana proti dvojitemu/rychlemu opakovanemu odeslani
             const now = Date.now();
             if (now - lastSubmit < 5000) {
                 showFormError('Příliš rychlé odesílání formuláře.');
@@ -257,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lastSubmit = now;
             if (!validateForm(form))
                 return;
-            // reCAPTCHA v3
+            // reCAPTCHA v3 — token se ziska az pri odeslani (ne pri nacteni stranky)
             if (typeof grecaptcha !== 'undefined') {
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = 'Ověřuji...';
@@ -305,7 +296,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    /* ---- LIVE VALIDACE ---- */
+    /* ====================================================
+       OKAMZITA VALIDACE POLI (pri psani/opusteni pole)
+       ==================================================== */
     document
         .querySelectorAll('.form-group input, .form-group textarea, .form-group select')
         .forEach((el) => {
@@ -315,7 +308,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 validateField(el);
         });
     });
-    /* ---- PHONE FORMAT ---- */
+    /* ====================================================
+       AUTOMATICKE FORMATOVANI TELEFONU
+       Pri psani do pole "Telefon" doplni format +420 XXX XXX XXX
+       ==================================================== */
     const phoneInput = document.getElementById('phone');
     if (phoneInput) {
         phoneInput.addEventListener('input', () => {
@@ -335,7 +331,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    /* ---- SMOOTH SCROLL ---- */
+    /* ====================================================
+       PLYNULY SCROLL NA KOTVY (a[href^="#"])
+       Momentalne na webu nejsou zadne interni odkazy na kotvy (#sekce),
+       ale kod zustava — pokud se v budoucnu na nejakou stranku doplni
+       odkaz typu <a href="#sluzby">, automaticky se k nemu bude
+       plynule scrollovat bez dalsi upravy JS.
+       ==================================================== */
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
         a.addEventListener('click', (e) => {
             const href = a.getAttribute('href');
@@ -396,4 +398,3 @@ function showFormError(msg) {
     }
     box.textContent = msg;
 }
-

@@ -6,8 +6,15 @@
     <title>Fotogalerie prací | Hrabemi Suchomel – Výkopové práce</title>
     <meta name="description" content="Prohlédněte si fotogalerii dokončených projektů – výkopy, základy, bazény, terénní úpravy a demolice v okolí Čáslavi a Středních Čech.">
     <meta name="robots" content="index, follow">
+
+    <!-- Open Graph - zobrazí se jako náhled při sdílení na Facebooku/WhatsAppu apod. -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hrabemi.cz/galerie.html">
+    <meta property="og:title" content="Fotogalerie prací | Hrabemi Suchomel">
+    <meta property="og:description" content="Prohlédněte si fotogalerii dokončených projektů – výkopy, základy, bazény, terénní úpravy a demolice v okolí Čáslavi.">
+    <meta property="og:image" content="https://hrabemi.cz/IMG/traktorbagr.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&amp;family=Source+Sans+3:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -106,10 +113,10 @@
                 <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
             </div>
 
-            <div class="gallery-item gi--wide" data-category="technika" data-title="Čelní nakladač – detail lžíce">
+            <div class="gallery-item gi--wide" data-category="technika" data-title="Čelní nakladač">
                 <img src="IMG/celni-nakladac-detail.jpg" alt="Detail čelního nakladače VOLVO BL71" loading="lazy">
                 <div class="gallery-overlay">
-                    <span class="go-title">Čelní nakladač – detail lžíce</span>
+                    <span class="go-title">Čelní nakladač</span>
                     <span class="go-cat"><i class="fas fa-tractor"></i> Technika</span>
                 </div>
                 <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
@@ -360,7 +367,9 @@
     <button class="lb-close" id="lbClose" aria-label="Zavřít"><i class="fas fa-times"></i></button>
     <button class="lb-nav lb-nav--prev" id="lbPrev" aria-label="Předchozí"><i class="fas fa-chevron-left"></i></button>
     <div class="lb-inner">
-        <img class="lb-img" id="lbImg" src="" alt="">
+        <!-- src se doplňuje dynamicky přes JS (lbImg.src = ...) při otevření
+             konkrétní fotky - proto tu žádný src zde v HTML není. -->
+        <img class="lb-img" id="lbImg" alt="">
         <p class="lb-caption" id="lbCaption"></p>
         <p class="lb-counter" id="lbCounter"></p>
     </div>
