@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error('reCAPTCHA error (poptavka):', err);
                     showFormError('Nepodařilo se ověřit reCAPTCHA. Zkuste to znovu.');
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Odeslat poptávku';
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat poptávku';
                     return;
                 }
             }
@@ -286,13 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Neznámá chyba';
                     showFormError('Formulář se nepodařilo odeslat: ' + msg);
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Odeslat poptávku';
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat poptávku';
                 }
             }
             catch {
                 showFormError('Chyba připojení k serveru.');
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Odeslat poptávku';
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat poptávku';
             }
         });
     }
