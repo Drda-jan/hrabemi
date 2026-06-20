@@ -88,13 +88,10 @@
 
             <form id="poptavkaForm" action="https://formspree.io/f/xwvjjqwy" method="POST">
 
-                <input type="hidden" name="_subject" value="Nová poptávka z hrabemi.cz">
-                <input type="hidden" name="_language" value="cs">
-                <input type="text" name="_gotcha" style="display:none">
-                <!-- Sem script.js vloží reCAPTCHA v3 token těsně před odeslením
-                     (document.getElementById('recaptchaToken').value = token).
-                     Bez tohoto pole se token spočítal, ale nikam se neodeslal. -->
-                <input type="hidden" id="recaptchaToken" name="recaptcha_token" value="">
+            <input type="hidden" name="_subject" value="Nová poptávka z hrabemi.cz">
+            <input type="hidden" name="_language" value="cs">
+            <input type="hidden" name="_recaptcha" id="recaptchaToken">
+            <input type="text" name="_gotcha" style="display:none">
 
                 <div style="margin-bottom:2rem;">
                     <h2 style="font-family:var(--font-head);font-size:1.4rem;text-transform:uppercase;margin-bottom:.3rem;">Kontaktní údaje</h2>
