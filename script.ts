@@ -299,6 +299,7 @@ document.addEventListener('DOMContentLoaded', (): void => {
 
             try {
                 const data = new FormData(form);
+                data.delete('_recaptcha');
 
                 const response = await fetch(form.action, {
                     method: 'POST',

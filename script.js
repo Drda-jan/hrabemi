@@ -270,6 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = 'Odesílám...';
             try {
                 const data = new FormData(form);
+                data.delete('_recaptcha');
                 const response = await fetch(form.action, {
                     method: 'POST',
                     body: data,
