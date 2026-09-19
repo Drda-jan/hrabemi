@@ -28,8 +28,20 @@
       "image": "https://hrabemi.cz/IMG/hrabemi_logo.png",
       "@id": "https://hrabemi.cz",
       "url": "https://hrabemi.cz",
-      "telephone": "+420777961876",
+              "telephone": "+420777961876",
       "email": "suchomel@hrabemi.cz",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "name": "IČO",
+          "value": "30006350"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "ID datové schránky",
+          "value": "dh8rcun"
+        }
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Krchleby 204",
@@ -47,9 +59,8 @@
     }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&amp;family=Source+Sans+3:wght@400;500;600&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -60,7 +71,7 @@
 <!-- TOP BAR -->
 <div class="topbar">
     <div class="container topbar__inner">
-        <span><i class="fas fa-map-marker-alt"></i> Krchleby 204, Čáslav &nbsp;|&nbsp; IČO: 30006350</span>
+        <span><i class="fas fa-map-marker-alt"></i> Krchleby 204, Čáslav &nbsp;|&nbsp; IČO: 30006350 &nbsp;|&nbsp; ID DS: dh8rcun</span>
         <div class="topbar__contacts">
             <a href="tel:+420777961876"><i class="fas fa-phone"></i> +420 777 961 876</a>
             <a href="mailto:suchomel@hrabemi.cz"><i class="fas fa-envelope"></i> suchomel@hrabemi.cz</a>
@@ -76,7 +87,7 @@
             <img src="IMG/hrabemi_logo.png" alt="Hrabemi Suchomel logo">
         </a>
         <nav class="nav" id="nav">
-            <a href="index.html" class="nav__link nav__link--active">O mně</a>
+            <a href="index.html" class="nav__link nav__link--active">O nás</a>
             <a href="galerie.html" class="nav__link">Fotogalerie</a>
             <a href="recenze.html" class="nav__link">Reference</a>
             <a href="poptavka.html" class="nav__link nav__link--cta">Nezávazná poptávka</a>
@@ -164,27 +175,47 @@
     </div>
 </section>
 
-<!-- O MNĚ -->
-<section class="section section--dark" id="o-mne">
+<!-- O NÁS -->
+<section class="section section--dark" id="o-nas">
     <div class="container about">
         <div class="about__imgs">
           <img src="IMG/tb_predni-strana-2.jpg" alt="Jakub Suchomel – Hrabemi" class="about__img about__img--main">
         </div>
         <div class="about__text">
-            <div class="section__label">O mně</div>
-            <h2 class="section__title">Jakub Suchomel<br><span class="text-accent">HRABEMI Suchomel s.r.o.</span></h2>
-            <p>Jsem profesionální obsluha traktorbagru s více než <strong>10 lety zkušeností</strong> v oboru. Mým cílem je odvést práci správně napoprvé – rychle, kvalitně a za férovou cenu.</p>
-            <p>Pracuji s traktorbagrem <strong>VOLVO BL71</strong>, který je vybaven třemi typy příslušenství: podkopovými lžicemi (40, 60 a 90 cm), svahovou lžicí (160 cm) a čelním nakladačem s paletizačními vidlemi. Díky tomu zvládnu opravdu pestrý rozsah prací.</p>
-            <p>Primárně působím na <strong>Čáslavsku</strong>, ale jezdím také do Kutné Hory, Kolína a po celých Středních Čechách dle dohody.</p>
+            <div class="section__label">O nás</div>
+            <h2 class="section__title"><span class="text-accent">HRABEMI Suchomel s.r.o.</span></h2>
+            <p>HRABEMI Suchomel s.r.o. je rodinná firma zaměřená na zemní, výkopové a stavební práce. Realizujeme základové desky a pasy, zámkové dlažby, příjezdové cesty, chodníky a terasy, výkopy pro bazény a jezírka, inženýrské sítě, demolice i terénní úpravy.</p>
+            <p>Zakládáme si na poctivě odvedené práci, férovém jednání a osobním přístupu. Ke každé zakázce přistupujeme individuálně a hledáme řešení, které dává smysl po technické i finanční stránce.</p>
+
             <div class="about__reasons">
                 <div class="reason"><i class="fas fa-check-circle"></i><span>Dochvilnost a spolehlivost</span></div>
                 <div class="reason"><i class="fas fa-check-circle"></i><span>Transparentní ceny – žádné skryté příplatky</span></div>
-                <div class="reason"><i class="fas fa-check-circle"></i><span> Spolehlivá technika VOLVO BL71</span></div>
+                <div class="reason"><i class="fas fa-check-circle"></i><span>Spolehlivá technika VOLVO BL71</span></div>
                 <div class="reason"><i class="fas fa-check-circle"></i><span>Komunikace a poradenství zdarma</span></div>
             </div>
+
             <a href="poptavka.html" class="btn btn--primary btn--lg" style="margin-top:2rem;">
                 <i class="fas fa-calculator"></i> Nezávazná poptávka
             </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section__head" style="margin-top:4rem;">
+            <div class="section__label">Vedení společnosti</div>
+            <h2 class="section__title">Jednatelé společnosti</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Jakub Suchomel</h3>
+                <p><strong>Technické vedení a realizace zakázek</strong></p>
+                <p>Jakub má na starosti technický a provozní chod společnosti a především samotnou realizaci zakázek. Zajišťuje organizaci práce na stavbách, obsluhu a provoz stavební techniky, technická řešení jednotlivých realizací a koordinaci prací přímo v terénu. Díky více než desetiletým praktickým zkušenostem dokáže navrhnout vhodný postup a řešení s ohledem na konkrétní podmínky každé zakázky.</p>
+            </div>
+            <div class="service-card">
+                <h3>Bc. Veronika Suchomelová</h3>
+                <p><strong>Administrativa, komunikace a obchodní zázemí</strong></p>
+                <p>Veronika zajišťuje administrativní a organizační zázemí společnosti. Má na starosti komunikaci se zákazníky a úřady, administrativu zakázek, přípravu podkladů a smluv, fakturaci, marketing a prezentaci společnosti. Zajišťuje také komunikaci a koordinaci v průběhu zakázky tak, aby měl zákazník potřebné informace od prvního kontaktu až po dokončení realizace.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -248,6 +279,7 @@
                 <li><i class="fas fa-envelope"></i> <a href="mailto:suchomel@hrabemi.cz">suchomel@hrabemi.cz</a></li>
                 <li><i class="fas fa-map-marker-alt"></i> Krchleby 204, Čáslav 286 01</li>
                 <li><i class="fas fa-building"></i> IČO: 30006350</li>
+                <li><i class="fas fa-inbox"></i> ID datové schránky: dh8rcun</li>
             </ul>
         </div>
         <div class="footer__col">
@@ -274,6 +306,7 @@
     <div class="footer__bottom">
         <div class="container">
             <span>© 2026 HRABEMI Suchomel s.r.o. · IČO: 30006350 · Všechna práva vyhrazena</span>
+            <span>© 2026 HRABEMI Suchomel s.r.o. · HRABEMI Suchomel s.r.o., IČO: 30006350, se sídlem Krchleby 204, 286 01 Krchleby, zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka 455746.</span>
             <span>Web vytvořil Jan Drda</span>
         </div>
     </div>
